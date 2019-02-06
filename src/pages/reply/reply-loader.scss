@@ -1,0 +1,37 @@
+page-reply-loader {
+
+	.block-friend{
+		position: absolute;
+		top: 30%;
+		left: 0;
+		right: 0;
+		margin: auto;
+		height: 30%;
+	}
+
+	.overlay-spinner{
+		position: absolute;
+		top: 60%;
+		left: 0;
+		right: 0;
+		margin: auto;
+		height: 0%;
+	}
+
+	ion-spinner{
+		width: 120px;
+		height: 120px;
+	}
+
+	ion-spinner svg{
+		animation-duration: 1000ms !important;
+	}
+	ion-spinner svg circle{
+		stroke: green !important;
+		stroke-width: 2px !important;
+	}
+
+	.overlay-spinner > span.time{
+		font-size: 45px;
+	}
+}

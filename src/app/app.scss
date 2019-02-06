@@ -14,3 +14,84 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-header{
+	background-color: color($colors, quizzy-background) !important;
+	color: color($colors, quizzy-text-color) !important;
+}
+
+ion-content{
+	background-color: color($colors, quizzy-background) !important;
+	color: color($colors, quizzy-text-color) !important;
+}
+
+.align-center-center{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.align-left-center{
+	height: 100%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.align-right-center{
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.description{
+	font-style: italic;
+	color: #C2C2C2;
+    font-size: .8em;
+}
+
+.h-full {
+	height: 100%;
+}
+
+ion-header > ion-navbar {
+	padding: 0 !important;	
+}
+
+ion-header > ion-navbar .back-button {
+	margin-left: 5px;
+	color: white;
+}
+
+ion-header > ion-navbar > div{
+	background-color: color($colors, quizzy-background) !important;
+	border: none !important;
+	padding: 0;	
+}
+
+ion-header > ion-navbar .toolbar-title{
+	color:white;
+}
+
+ion-header ion-row{
+    height: 55px;
+    border-bottom: solid 1px #F2F2F2;
+}
+
+ion-header ion-col{
+	font-size: 25px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+ion-header ion-col.active{
+    color: color($colors, danger);
+}
+
+ion-list-header{
+    background: #ddd !important;
+}

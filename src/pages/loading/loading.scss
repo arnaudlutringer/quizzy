@@ -1,0 +1,220 @@
+page-profile {
+	ion-card{
+		color: #2C2C2C;
+
+		margin: 12px 0 !important;
+		width: 100% !important;
+	}
+
+	.score{
+		width: 100%;
+		height: 100%;
+		padding: 0 10px;
+		font-size: 2em;
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.details{
+		font-weight: bold;
+		font-size: 1em;
+	}
+
+	.details.bad{
+		color: color($colors, danger);
+	}
+
+	.details.good{
+		color: color($colors, secondary);
+	}
+
+	.actions button div{
+		text-transform: uppercase;
+		font-size: 0.9em;
+		margin-top: 2px;
+	}
+
+	.friend-item{
+		padding-left: 8px;
+	}
+
+	ion-label{
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+	}
+
+	.hidden{
+		display:none;
+	}
+
+	.card-friend ion-card-content{
+		padding-top:0;
+		padding-bottom:0;
+	}
+
+	.card-header-info{
+		padding: 1px 0;
+		height: 8px;
+	}
+
+	.card-header-info > div{
+		height: 100%;
+	}
+
+	.card-header-info > div.bad{
+		background-color: color($colors, danger);
+	}
+
+	.card-header-info > div.good{
+		background-color: color($colors, secondary);
+	}
+
+	.card-header-info > div.not-played{
+		background-color: color($colors, grey);
+	}
+
+	.friend-score{
+
+    border: solid 1px #C2C2C2;
+    border-radius: 5px;
+    background: #F3F3F3;
+	}
+
+.friend-score ion-col{	
+	height: 40px;
+    text-align: right;
+    font-weight: bold;
+}
+
+	.comment-me, .comment-not-me{
+		width: 100%;
+		padding: 5px 0;
+		font-size: 1.1em;
+	}
+
+	.comment-me .block-message {
+		float: right;
+	}
+
+	.comment-not-me .block-message {
+		float: left;
+	}
+
+	.comment-me .block-message{ 
+		padding: 6px 10px;
+		background: #92bed5;
+		border-radius: 5px;
+		text-align: right;
+		float: right;
+		max-width: 70%;
+	}
+
+	.comment-not-me .block-message{   
+		padding: 6px 10px;
+		background: #8d8f7d;
+		border-radius: 5px;
+		text-align: left;
+		float: left;
+		max-width: 70%;
+	}
+
+	.comment-not-me .block-message .time, .comment-me .block-message .time{   
+		padding: 0;
+		text-align: right;
+		float: right;
+		font-size: .8em;
+		color: #ddd;
+	}
+
+	.profile-comments .comment-not-me img{
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		margin-right: 10px;
+		float:left;
+	}
+
+	.profile-comments .comment-me img{
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		margin-left: 10px;
+		float:right;
+	}
+
+	.profile-comments{
+    height: calc(100% - 60px);
+    padding: 0 16px !important;
+	}
+
+	.profile-comments .scroll-content{
+    padding: 0 16px !important;
+	}
+
+
+	.chat{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		background-color: #f2f2f2;
+		height: 50px;
+	}
+
+	.chat > div{
+		padding: 5px 0 5px 5px;
+	}
+
+	.chat ion-textarea{
+		background: white;
+		color: #2C2C2C;
+		border: solid 1px #BBB;
+		border-radius: 5px;
+		width: 78%;
+		float: left;
+		height: 40px;
+	}
+
+	.chat ion-textarea textarea{
+		margin:5px !important;
+	}
+
+	.chat button{
+
+		height: 40px !important;
+		width: 20%;
+		float: right;
+		margin: 0 0.2rem !important;
+	}
+
+	.comment-date{
+		margin: 10px 0;
+	}
+
+	.comment-date > ion-col{
+		background: #ddd;
+		color: #2C2C2C;
+		border-radius: 5px;
+		font-weight: bold;
+	}
+
+	.comment-date > ion-col > div{
+		text-align: center;
+	}
+
+	ion-header.comments > button {
+    position: absolute !important;
+    z-index: 5 !important;
+	}
+
+	ion-header.comments ion-col{
+		font-size: 1.1em;
+	}
+}

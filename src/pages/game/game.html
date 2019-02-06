@@ -1,0 +1,61 @@
+<ion-content [class]="showCategory ? ' fadeIn' : 'hidden'">
+  <div class="pre-game h-full align-center-center">
+    <div class="domain">
+      <div class="title">
+        Categorie
+      </div>
+      <div class="domain-block">
+        <img src="{{currentQuestion.category.image}}"/>
+        <div class="text">{{currentQuestion.category.title}}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-content padding>
+  <div class="timer">
+    <div class="time" [style.height]="taux + '%'"></div>
+    <div class="info">
+      <div *ngIf="taux < 100">{{ remaining }}</div>
+      <div *ngIf="taux >= 100"><ion-icon name="close-circle"></ion-icon></div>
+    </div>
+  </div>
+  <div class="question">{{currentQuestion.title}}</div>
+  <div class="answers">
+    <div class="answer">
+      <div class="padding-block" (click)="verify(currentQuestion.answers[0].id)">
+        <div [class]="'block ' + getClass(currentQuestion.answers[0].id)">{{currentQuestion.answers[0].text}}</div>
+      </div>
+    </div>
+    <div class="answer">
+      <div class="padding-block" (click)="verify(currentQuestion.answers[1].id)">
+        <div [class]="'block ' + getClass(currentQuestion.answers[1].id)">{{currentQuestion.answers[1].text}}</div>
+      </div>
+    </div>
+    <div class="answer">
+      <div class="padding-block" (click)="verify(currentQuestion.answers[2].id)">
+        <div [class]="'block ' + getClass(currentQuestion.answers[2].id)">{{currentQuestion.answers[2].text}}</div>
+      </div>
+    </div>
+    <div class="answer">
+      <div class="padding-block" (click)="verify(currentQuestion.answers[3].id)">
+        <div [class]="'block ' + getClass(currentQuestion.answers[3].id)">{{currentQuestion.answers[3].text}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="suivi">
+    <div class="person" [style.top]="sanitizer.bypassSecurityTrustStyle('calc( ( 100% - 50px - 20px ) * ' + (currentQuestionId / (questions?.length - 1)) +')')">
+      <img src="https://www.popme.app/media/cache/resolve/user/uploads/images/user/4435e3b26ae1da2d545ceb09f353ea10"/>
+      <div class="info">{{currentQuestionId + 1}}/{{questions?.length}}</div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="quit" (click)="quit()">Quitter</div>
+    <div class="domain">
+      <div class="domain-block">
+        <img src="{{currentQuestion.category.image}}"/>
+        <div class="text">{{currentQuestion.category.title}}</div>
+      </div>
+    </div>
+    <div class="pass" [hidden]="!showResponses" (click)="nextQuestion()">Suivant</div>
+  </div>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+    <ion-row>
+      <ion-col col-3 (click)="goToProfile('back')"><ion-icon name="people"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToQuestions('back')"><ion-icon name="play"></ion-icon></ion-col>
+      <ion-col col-3><ion-icon name="search"></ion-icon></ion-col>
+      <ion-col col-3 class="active"><ion-icon name="settings"></ion-icon></ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Mes centres d'intérêt</ion-list-header>
+    <button ion-item (click)="pushToInterest()" >
+        <ion-icon name="game-controller-a" item-start></ion-icon>{{ nbCategories }} centres d'intérêt
+    </button>
+  </ion-list>
+</ion-content>

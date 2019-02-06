@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-3 (click)="goToProfile('back')"><ion-icon name="people"></ion-icon></ion-col>
+      <ion-col col-3 class="active"><ion-icon name="play"></ion-icon></ion-col>
+      <ion-col col-3><ion-icon name="search"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div layout vertical>
+    <div flex three >
+      <div>
+        <ion-grid class="sub-header">
+          <ion-row>
+            <ion-col col-6 [class]="display == 1 ? 'text-center active' : 'text-center'" (click)="show(1)">
+              <div class="text-muted text-xs l-s-1x m-t-xs"><ion-icon name="play"></ion-icon>&nbsp;Jouer</div>
+            </ion-col>
+            <ion-col col-6 [class]="display == 2 ? 'text-center active' : 'text-center'" (click)="show(2)">
+              <div class="text-muted text-xs l-s-1x m-t-xs"><ion-icon name="trophy"></ion-icon>&nbsp;Mes questions
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="display == 1">
+      <div class="play-desc">J'ajoute des questions</div>
+    <div class="play align-center-center">
+      <div class="play-button" (click)="goToReply()"><div><ion-icon name="play"></ion-icon></div></div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="display == 2">
+  <ion-searchbar placeholder="Catégorie, Question, Réponse" [(ngModel)]="search" (ionInput)="searchQuestion($event)"></ion-searchbar>
+    <ion-grid class="questions">
+      <ion-row *ngFor="let question of questions; let i = index" class="my-question">
+        <ion-col col-2>
+          <div class="align-center-center"><img [src]="question.category.image"/></div>
+        </ion-col>
+        <ion-col col-8>
+          <ion-row>
+            <ion-col col-12 class="title">{{question.title}}</ion-col>
+            <ion-col col-12 text-right class="answer" *ngIf="question.goodAnswer.text != null">
+              <div *ngFor="let response of question.goodAnswer.text">
+                <ng-container *ngIf="response.text">{{response.text}}</ng-container>
+                <ng-container *ngIf="!response.text">{{response}}</ng-container>
+                </div>
+            </ion-col>
+            <ion-col col-12 text-right class="answer not-replied" *ngIf="question.goodAnswer.text == null">Non répondu</ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2>
+          <div class="align-center-center"><button ion-button icon-start clear small (click)="delete(question.id)"><ion-icon name="trash"></ion-icon></button></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

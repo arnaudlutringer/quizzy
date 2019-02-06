@@ -1,0 +1,245 @@
+{
+  "APP": {
+    "VERSION": "1.0.5"
+  },
+  "BUTTON": {
+    "ACTIONS": "Actions",
+    "ADD": "Ajouter",
+    "BAN": "Bannir",
+    "CANCEL": "Annuler",
+    "CONNECTION": "Se connecter",
+    "DELETE": "Supprimer",
+    "DOWNGRADE": "Rétrograder",
+    "FINISH": "Terminer",
+    "JOIN": "Rejoindre",
+    "KICK": "Exclure",
+    "LOADING": "Chargement",
+    "LOADING_CREATE_CLAN": "Création du clan ...",
+    "LOADING_EDIT_CLAN": "Modification du clan ...",
+    "LOADING_CARDS": "Chargement de nouvelles cartes ...",
+    "LOADING_DATA": "Chargement des données ...",
+    "LOADING_DELETE": "Suppression ...",
+    "LOADING_DELETE_ACCOUNT": "Supression de ton compte ...",
+    "NEXT": "Suivant",
+    "NO": "Non",
+    "REGISTER": "Inscription...",
+    "SKIP": "Passer",
+    "UPGRADE": "Promouvoir",
+    "QUIT": "Quitter",
+    "YES": "Oui"
+  },
+  "ERROR": {
+    "CONNECTION": "Erreur de connexion",
+    "NO_CONNECTION": "Impossible de se connecter à internet. Veuillez vérifier votre connexion !"
+  },
+  "PAGE": {
+    "CLAN": {
+      "TITLE": "Clan",
+      "MY_CLAN": "Mes clans",
+      "JOIN_CLAN": "Rejoindre un clan",
+      "CREATE_CLAN": "Créer un clan",
+      "CREATE_CLAN_MESSAGE": "Votre clan a été créé",
+      "DELETE_CLAN": "Supprimer le clan",
+      "DELETE_CLAN_ALERT": "Attention ! Cette demande est irrévocable.",
+      "NO_CLAN": "Tu n'as pas encore de clan",
+      "LEAVE_CLAN": "Quitter le clan"
+    },
+    "LOADING": {
+      "PROFIL": "Chargement de ton profil",
+      "PHOTOS": "Chargement des photos"
+    },
+    "LOG": {
+      "ACTIVITY": "Activité",
+      "FILTER_ACTIVITY": "Activité",
+      "FILTER_SEARCH": "Recherche",
+      "NO_RESULT_TITLE": "Dommage",
+      "NO_RESULT_DESCRIPTION": "Personne n'a encore popé",
+      "POPED": "vous a popé"
+    },
+    "LOGIN": {
+      "BAD_ACCOUNT" : "Votre compte et/ou mot de passe ne sont pas valides",
+      "CONNEXION_FACEBOOK": "Connexion par Facebook",
+      "CONNEXION_CLASSIQUE": "Connexion classique",
+      "DELETED_ACCOUNT" : "Votre compte a été supprimé...\n Si vous voulez le réactiver, merci de nous en faire la demande sur www.popme.app",
+      "PASSWORD": "Mot de passe",
+      "PASSWORD_REINIT_PROGRESS_SUBTITLE": "Tu recevras rapidement un lien pour le réinitialiser",
+      "PASSWORD_REINIT_PROGRESS_TITLE": "Réinitialisation en cours",
+      "PASSWORD_REINIT_SUBTITLE": "Inscris ton email pour réinitialiser le mot de passe",
+      "PASSWORD_REINIT_TITLE": "Email vide",
+      "REGISTER": "Inscris toi",
+      "TUTORIAL1": "Crée ton profil <br /> et envoie tes meilleures photos",
+      "TUTORIAL2": "Pop si tu aimes <br /> ou passe les photos",
+      "TUTORIAL3": "Deviens le plus populaire <br /> et écrase tes amis !"
+    },
+    "LOGIN_CLASSIQUE": {
+      "CONNECTION": "Connexion",
+      "REINIT_PASSWORD": "Réinitialiser mon mot de passe"
+    },
+    "PLAY": {
+      "SEE_PROFIL": "Voir son profil",
+      "NO_PHOTOS": "Il n'y a plus de photos",
+      "REPORT_PHOTOS": "Signaler une photo",
+      "REPORT_PHOTOS_BAD_CONTENT": "Contenu choquant",
+      "REPORT_PHOTOS_NO_REASON": "Pas de raison"
+    },
+    "PROFILE": {
+      "EDIT_INFOS": "Modifier mes infos",
+	  "POPOVER": {
+		  "GENERAL1": "Ca c'est ton score total !",
+		  "GENERAL2": "A chaque fois que quelqu'un aimera une de tes photos, ce score évoluera.",
+		  "GENERAL3": "A toi de partager tes photos et faire monter ton score pour devenir le plus populaire !",
+		  "GENERAL4": "J'ai compris",
+		  "POPPED": "Popée",
+		  "PASSED": "Passée",
+		  "RANK1": "Ca c'est ton classement !",
+		  "RANK2": "Tu peux choisir quel classement par défaut tu souhaites voir sur ton profil",
+		  "RANK3": "Classements",
+		  "SCORE1": "Ca c'est ton score total !",
+		  "SCORE2": "A chaque fois que quelqu'un aimera une de tes photos, ce score évoluera.",
+		  "SCORE3": "A toi de partager tes photos et faire monter ton score pour devenir le plus populaire !",
+		  "SCORE4": "J'ai compris",
+		  "TIME2": "J'ai compris",
+		  "TIME1": "Ca c'est le temps d'attent avant d'ajouter une nouvelle popy",
+		  "TIME2": "J'ai compris"
+		}
+    },
+    "RANKING": {
+      "TITLE": "Classements",
+      "MENU_WORLD": "Monde",
+      "MENU_COUNTRY": "Pays",
+      "MENU_CITY": "Ville",
+      "DEFAULT_RANKING": "Classement par défaut",
+      "FULL_RANKING": "Classement complet",
+      "PERSONALIZE_RANKING": "Classement personnalisé",
+      "PSEUDO": "Pseudo",
+      "SCORE": "Score",
+      "NO_ADDRESS": "Ce classement n'est pas disponible car tu n'as pas renseigné ton adresse.",
+      "NO_CLAN": "Tu n'as pas de clan ?",
+      "JOIN_CLAN": "Rejoindre un clan"
+    },
+    "REGISTER": {
+      "TITLE": "Bienvenue sur PopMe, avec seulement 4 photos, devient plus pop que tes amis. Pour créer ton profil, il te suffit de renseigner les informations suivantes :"
+    },
+    "SETTINGS": {
+      "TITLE": "Mes informations",
+      "SLOGAN": "Devenez le plus populaire",
+      "ACCOUNT": {
+        "CONFIRM": "Souhaitez-vous confirmer ?",
+        "DELETE": "Supprimer mon compte",
+        "DELETE_CONFIRM": "Souhaitez-vous supprimer votre compte ? Toutes vos données seront perdues.",
+        "DELETE_TITLE": "Suppression",
+        "SIGN_OUT": "Déconnexion"
+      },
+      "CONTACT": {
+        "TITLE": "Nous contacter",
+        "LABEL_HELP": "Aide et assistance"
+      },
+      "NOTICES": {
+        "TITLE": "Mentions legales",
+        "LABEL_PRIVACY_POLICY": "Politique de confidentialité",
+        "LABEL_CONDITIONS_OF_USE": "Conditions d'utilisations"
+      },
+      "NOTIFICATIONS": {
+        "TITLE": "Notifications",
+        "NEW_POP": "Nouveaux pops",
+        "SLOT_PICTURE": "Slot photo disponible"
+      },
+      "INFORMATIONS": {
+        "TITLE": "Mes informations",
+        "LABEL_DESCRIPTION": "Description",
+        "LABEL_LOCATION": "Location",
+        "LABEL_LOCATION_DESCRIPTION": "Mon adresse actuelle",
+        "LABEL_BIRTHDAY": "Date de naissance",
+        "LABEL_SEX": "Sexe",
+        "LABEL_SEX_OPTION1": "Femme",
+        "LABEL_SEX_OPTION2": "Homme",
+        "LABEL_SEX_OPTION3": "Autre"
+      },
+      "SETTING": {
+        "TITLE": "Langue",
+        "LABEL_LANGUAGE": "Langue",
+        "LABEL_LANGUAGE_OPTION1": "Français",
+        "LABEL_LANGUAGE_OPTION2": "Anglais"
+      }
+    },
+    "TREND": {
+      "TITLE": "Tendances",
+      "BEST_POPED": "Les plus popés de la semaine",
+      "BEST_POPER": "Les plus grands popers de la semaine",
+      "BEST_PHOTO": "La photo de la semaine",
+      "POPPED": "Popé",
+      "PASSED": "Passé"
+    }
+  },
+  "PLUGIN": {
+    "CAMERA": {
+      "FULL_STOCK": "Votre stock de photos est atteint (4/4)",
+      "CHOOSE_PICTURE": "Choisir une photo",
+      "DELETE_PICTURE": "Supprimer cette photo",
+      "DELETE_PICTURE_ALERT": "Tu veux vraiment supprimer cette photo ? <strong>Les points seront conservés dans ton score.</strong>",
+      "PICTURE_CLAN": "Image du clan",
+      "PICTURE_PROFILE": "Photo de profil",
+      "TAKE_PICTURE": "Prendre une photo",
+      "MODIFY_ALBUM": "Modifier votre album"
+    },
+    "SHARE": {
+      "CLAN_MESSAGE_1": "Rejoins mon clan ",
+      "CLAN_MESSAGE_2": " avec le mot de passe suivant : ",
+      "CLAN_MESSAGE_3": ". Rendez-vous sur Popme !",
+      "MESSAGE": "Regarde mon profil Popme sur ",
+      "TITLE": "Partage ton profil"
+    }
+  },
+  "TUTORIAL": {
+	"BASE": {
+      "TITLE": "Quitter le tutoriel",
+      "SUBTITLE": "Souhaites-tu vraiment quitter le tutoriel ?"
+    },
+    "1": {
+      "TITLE": "Bonjour nouveau poper !",
+      "TEXT1": "Je vais te présenter l'application à partir de ce tutoriel et te montrer le chemin pour devenir le plus populaire.",
+      "TEXT2": "Tu peux ignorer ce tutoriel à tout moment en cliquant sur le bouton 'Passer'."
+    },
+    "2": {
+      "TITLE": "Bienvenue sur la page de ton profil",
+      "TEXT1": "Tu y trouveras :",
+      "TEXT2": "Ton score",
+      "TEXT3": "Ton classement",
+      "TEXT4": "Le temps qu'il te reste à attendre avant d'ajouter une nouvelle photo"
+    },
+    "3": {
+      "TITLE": "Ca, c'est la page de jeu !",
+      "TEXT1": "Tu peux aimer ou ne pas aimer les popies des autres joueurs en swipant les photos à droite ou à gauche ou à partir des boutons en bas de la page",
+      "TEXT2": "Alors que penses-tu de cette photo ?"
+    },
+    "4": {
+      "TITLE": "Super",
+      "TEXT1": "Passons à la suite...",
+      "TEXT2": "Ah, je crois que quelqu'un a popé ta photo :)"
+    },
+    "5": {
+      "TITLE": "Quelqu'un a popé ta photo !",
+      "TEXT1": "Tu peux cliquer sur la photo du poper pour ouvrir son profil.",
+      "TEXT2": "Retourne sur ton profil et recharge ta page !"
+    },
+    "6": {
+      "TITLE": "Voici son profil",
+      "TEXT1": "Tu peux voir ces popies et les noter tout de suite",
+      "TEXT2": "Je pop"
+    },
+    "7": {
+      "TITLE": "Très bien !",
+      "TEXT1": "Maintenant, retournons sur ton profil, ton score a évolué !"
+    },
+    "8": {
+      "TITLE": "Voilà, c'est terminé",
+      "TEXT1": "Rafraichis ton écran en faisant un swipe vers le bas de la page, et tu verras ton score évolué...",
+      "TEXT2": "Tu peux maintenant devenir le plus pouplaire !"
+    },
+    "9": {
+      "TITLE": "Voilà, c'est terminé",
+      "TEXT1": "Tu peux maintenant devenir le plus pouplaire !",
+      "TEXT2": "Bon courage !"
+    }
+  }
+}

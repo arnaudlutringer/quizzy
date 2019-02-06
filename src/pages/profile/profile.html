@@ -1,0 +1,104 @@
+<ion-header>
+	<ion-navbar>
+		<ion-row>
+			<ion-col col-3 class="active"><ion-icon name="people"></ion-icon></ion-col>
+			<ion-col col-3 (click)="goToQuestions('forward')"><ion-icon name="play"></ion-icon></ion-col>
+			<ion-col col-3><ion-icon name="search"></ion-icon></ion-col>
+			<ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
+		</ion-row>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card class="card-friend" *ngFor="let friend of friends; let i = index">
+		<ion-item class="friend-item">
+			<ion-row (click)="makeShow(friend.id)">
+				<ion-col col-8>
+					<ion-avatar item-start float-left>
+						<img src="{{friend.account_image}}">
+					</ion-avatar>
+					<div class="align-left-center">
+						<div><strong>{{friend.usualName}}</strong><br/><span class="description">{{friend.description}}</span></div>
+					</div>
+				</ion-col>
+				<ion-col col-3>
+					<div class="align-center-center">
+						<div style="width:100%">
+							<strong text-center>{{friend.score}} pts.</strong>
+							<div col-12 class="card-header-info">
+								<div class="good" [style.width]="friend.taux.good + '%'">&nbsp;</div>
+							</div>
+							<div col-12 class="card-header-info">
+								<div class="bad" [style.width]="friend.taux.bad + '%'">&nbsp;</div>
+							</div>
+							<div col-12 class="card-header-info">
+								<div class="not-played" [style.width]="friend.taux.not_played + '%'">&nbsp;</div>
+							</div>
+						</div>
+					</div>
+				</ion-col>
+				<ion-col col-1>
+					<div class="align-center-center" *ngIf="state != friend.id"><ion-icon name="arrow-down"></ion-icon></div>
+					<div class="align-center-center"  *ngIf="state == friend.id"><ion-icon name="arrow-up"></ion-icon></div>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+		<div [style.display]="state == friend.id ? 'block' : 'none'">
+			<ion-card-content>
+				<ion-row>
+					<ion-col col-auto >
+						<div class="score">{{friend.score}} pts.</div>
+					</ion-col>
+					<ion-col col-auto>
+						<div class="details good">{{friend.answers.good}} bonnes réponses</div>
+						<div class="details bad">{{friend.answers.bad}} mauvaises réponses</div>
+						<div class="details error">{{friend.answers.not_played}} non répondues</div>
+					</ion-col>
+				</ion-row>
+
+				<ion-row class="friend-score">
+					<ion-col col-10 class="align-right-center">
+						Score de {{friend.usualName}} : {{friend.his_score.score}} pts.
+					</ion-col>
+					<ion-col col-2>
+						<div class="align-center-center">
+							<div style="width:100%">
+								<div col-12 class="card-header-info">
+									<div class="good" [style.width]="friend.his_score.taux.good + '%'">&nbsp;</div>
+								</div>
+								<div col-12 class="card-header-info">
+									<div class="bad" [style.width]="friend.his_score.taux.bad + '%'">&nbsp;</div>
+								</div>
+								<div col-12 class="card-header-info">
+									<div class="not-played" [style.width]="friend.his_score.taux.not_played + '%'">&nbsp;</div>
+								</div>
+							</div>
+						</div>
+					</ion-col>
+				</ion-row>
+				<!--<p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>-->
+			</ion-card-content>
+			<ion-row class="actions">
+				<ion-col col-4>
+					<button ion-button icon-start clear small>
+						<ion-icon name="share"></ion-icon>
+						<div>Partager</div>
+					</button>
+				</ion-col>
+				<ion-col col-4 text-center>
+					<button ion-button icon-start clear small (click)="modalComments(friend)">
+						<ion-icon name="text"></ion-icon>
+						<div>{{friend.comments?.length}} Comments</div>
+					</button>
+				</ion-col>
+				<ion-col col-4 align-self-center text-center>
+					<button ion-button icon-start clear small (click)="play(i)">
+						<ion-icon name="play"></ion-icon>
+						<div>Jouer</div>
+					</button>
+				</ion-col>
+			</ion-row>
+		</div>
+	</ion-card>
+	<button (click)="connectFb()" ion-button button-lg> FB</button>
+</ion-content>

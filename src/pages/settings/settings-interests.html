@@ -1,0 +1,17 @@
+
+<ion-header>
+ <ion-navbar>
+   <ion-title>Mes centres d'intérêt</ion-title>
+ </ion-navbar>
+</ion-header>
+<ion-content class="interests">
+  <ion-list>
+    <ng-container *ngFor="let category of categories; let i = index">
+      <ion-item>
+        <ion-label>{{category.name}}</ion-label>
+        <ion-checkbox [(ngModel)]="category.selected" [checked]="category.selected" (click)="change()"></ion-checkbox>
+        <img item-end [src]="category.picture"/>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

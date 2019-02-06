@@ -1,0 +1,34 @@
+<ion-content padding>
+  <div class="block-friend">
+    <ion-card class="card-friend">
+      <ion-item class="friend-item">
+        <ion-row>
+          <ion-col col-8>
+            <ion-avatar item-start float-left>
+              <img src="{{friendChosen.account_image}}">
+            </ion-avatar>
+            <div class="align-left-center">
+              <div><strong>{{friendChosen.usualName}}</strong><br/><span class="description">{{friendChosen.description}}</span></div>
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="align-center-center">
+              <div style="width:100%" text-center>
+                <strong>{{friendChosen.answers.not_played}}</strong>
+                <div col-12>
+                  questions
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div class="h-full align-center-center overlay-spinner">
+    <span class="time">{{remaining}}</span>
+  </div>
+  <div class="h-full align-center-center overlay-spinner">
+    <ion-spinner icon="spiral"></ion-spinner>
+  </div>
+</ion-content>

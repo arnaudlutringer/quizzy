@@ -1,0 +1,44 @@
+<ion-header class="comments">
+	<button ion-button clear icon-only (click)="back()">
+		<ion-icon name='close'></ion-icon>
+	</button>
+	<ion-row>
+		<ion-col col-12>Conversation avec {{friend.usualName}}</ion-col>
+	</ion-row>
+</ion-header>
+<ion-content #content padding class="profile-comments">
+		<ion-grid>
+			<ion-row *ngFor="let message of friend.comments">
+				<ng-container *ngIf="!message.me">
+					<div class="comment-not-me">
+						<img [src]="friend.account_image"/>
+						<div class="block-message">
+							<div>
+								<div class="message">{{message.message}}</div>
+								<div class="time">{{message.date}}</div>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+				<ng-container *ngIf="message.me">
+					<div class="comment-me">
+						<img [src]="me.account_image"/>
+						<div class="block-message">
+							<div>
+								<div class="message">{{message.message}}</div>
+								<div class="time">{{message.date}}</div>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</ion-row>
+		</ion-grid>
+</ion-content>
+<ion-footer>
+  <div #chat class="chat">
+		<div>
+			<ion-textarea [(ngModel)]="message" placeholder=""></ion-textarea>
+			<button ion-button (click)="sendMessage()" [disabled]="message?.length<=0">Envoyer</button>
+		</div>
+	</div>
+</ion-footer>

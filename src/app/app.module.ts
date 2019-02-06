@@ -1,40 +1,90 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule, Storage } from '@ionic/storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyApp } from './app.component';
+import { Globalization } from '@ionic-native/globalization/ngx';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {Http, HttpModule} from '@angular/http';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
+  LoadingPage, GameLoaderPage, QuestionsPage, ReplyLoaderPage, 
+  ReplyPage, SettingsPage, SettingsInterestsPage } from '../pages/pages';
+  import { Facebook } from "@ionic-native/facebook";
+  import { CategoryProvider, FacebookService, User, Api, Translate } from '../providers/providers';
+  import { StatusBar } from '@ionic-native/status-bar';
+  import { SplashScreen } from '@ionic-native/splash-screen';
+  import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-@NgModule({
-  declarations: [
+  @NgModule({
+    declarations: [
     MyApp,
-    AboutPage,
+    ProfilePage,
+    ProfileCommentsPage,
     ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  imports: [
+    LoadingPage,
+    GamePage, 
+    GameLoaderPage,
+    ReplyPage, 
+    ReplyLoaderPage,
+    QuestionsPage,
+    SettingsPage, 
+    SettingsInterestsPage
+    ],
+    imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
+    IonicModule.forRoot(MyApp, {
+      backButtonText: '',
+      mode: 'ios'
+    }),
+    IonicStorageModule.forRoot({
+      name: '__quizzydb'
+      //driverOrder: ['localstorage' ]
+    }),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    HttpModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpClient]
+      }
+    }),
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
     MyApp,
-    AboutPage,
+    ProfilePage,
+    ProfileCommentsPage,
     ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  providers: [
+    LoadingPage,
+    GamePage, 
+    GameLoaderPage,
+    ReplyPage, 
+    ReplyLoaderPage,
+    QuestionsPage,
+    SettingsPage,
+    SettingsInterestsPage
+    ],
+    providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
-export class AppModule {}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NativePageTransitions,
+    CategoryProvider, 
+    Facebook,
+    FacebookService,
+    User,
+    Api,
+    Globalization,
+    Translate
+    ]
+  })
+  export class AppModule {}
+
+  export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+  }

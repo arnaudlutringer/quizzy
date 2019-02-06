@@ -1,0 +1,130 @@
+<ion-content padding>
+  <div class="question">{{currentQuestion.title}}</div>
+  <div class="answers">
+    <ng-container *ngIf="currentQuestion.type.name == 'QS'">
+      <ion-row style="height: 100%" class="align-center-center">
+        <ion-col col-6 style="height: 25%;" *ngFor="let answer of currentQuestion.answers; let i = index">
+          <div class="answer">
+            <div class="padding-block" (click)="setGood(answer.id)">
+              <div [class]="'block ' + getClass(answer.id)">{{answer.text}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+     <ng-container *ngIf="currentQuestion.type.name == 'QCM'">
+      <ion-row style="height: 100%" class="align-center-center">
+        <ion-col col-6 style="height: 25%;" *ngFor="let answer of currentQuestion.answers; let i = index">
+          <div class="answer">
+            <div class="padding-block" (click)="setQCMGood(answer.id)">
+              <div [class]="'block ' + getQCMClass(answer.id)">{{answer.text}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="currentQuestion.type.name == 'INT'">
+      <ion-row class="qs-row">
+        <ion-col col-12 style="height: 100px;">
+          <ion-input [readonly]="replied" type="number"
+          [class]="replied ? 'align-center-center input-int valided' : 'align-center-center input-int'" 
+          [(ngModel)]="int_value"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="qs-actions">
+        <div style="text-align:center;width:100%">
+         <button ion-button icon-start (click)="validINT()">Valider</button>
+       </div>
+     </ion-row>
+   </ng-container>
+    <ng-container *ngIf="currentQuestion.type.name == 'TEXT'">
+      <ion-row class="qs-row">
+        <ion-col col-12 style="height: 100px;">
+          <ion-input [readonly]="replied" type="text"
+          [class]="replied ? 'align-center-center input-int valided' : 'align-center-center input-text'" 
+          [(ngModel)]="text_value"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="qs-actions">
+        <div style="text-align:center;width:100%">
+         <button ion-button icon-start (click)="validTEXT()">Valider</button>
+       </div>
+     </ion-row>
+   </ng-container>
+   <ng-container *ngIf="currentQuestion.type.name == 'YMD'">
+    <ion-row [class]="replied ? 'qs-row valided' : 'qs-row'">
+      <ion-col col-3 style="height: 100px;">
+        <ion-slides #sliderDay pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+          <ng-container *ngFor="let day of days">
+            <ion-slide [attr.data-value]="day.value">{{day.label}}</ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-col>
+      <ion-col col-6 style="height: 100px;">
+        <ion-slides #sliderMonth pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+          <ng-container *ngFor="let month of months">
+            <ion-slide  [attr.data-value]="month.value">{{month.label}}</ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-col>
+      <ion-col col-3 style="height: 100px;">
+        <ion-slides #sliderYear pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+          <ion-slide *ngFor="let year of years">{{year.value}}</ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <ion-row class="qs-actions">
+      <div style="text-align:center;width:100%">
+       <button ion-button icon-start (click)="validYMD()">Valider</button>
+     </div>
+   </ion-row>
+ </ng-container>
+ <ng-container *ngIf="currentQuestion.type.name == 'YM'">
+  <ion-row [class]="replied ? 'qs-row valided' : 'qs-row'">
+    <ion-col col-6 style="height: 100px;">
+      <ion-slides #sliderMonth pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+
+        <ng-container *ngFor="let month of months">
+          <ion-slide [attr.data-value]="month.value">{{month.label}}</ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-col>
+    <ion-col col-6 style="height: 100px;">
+      <ion-slides #sliderYear pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+        <ion-slide *ngFor="let year of years">{{year.value}}</ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-row class="qs-actions">
+    <div style="text-align:center;width:100%">
+     <button ion-button icon-start (click)="validYM()">Valider</button>
+   </div>
+ </ion-row>
+</ng-container>
+<ng-container *ngIf="currentQuestion.type.name == 'Y'">
+  <ion-row [class]="replied ? 'qs-row valided' : 'qs-row'">
+    <ion-col col-12 style="height: 100px;">
+      <ion-slides #sliderYear pager="false" direction="vertical" loop="true" watchSlidesVisibility="true" slidesPerView="3" centeredSlides="true">
+        <ion-slide *ngFor="let year of years">{{year.value}}</ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-row class="qs-actions">
+    <div style="text-align:center;width:100%">
+     <button ion-button icon-start (click)="validY()">Valider</button>
+   </div>
+ </ion-row>
+</ng-container>
+</div>
+<div class="actions">
+  <div class="quit" (click)="quit()">Quitter</div>
+  <div class="domain">
+    <div class="domain-block">
+      <img src="{{currentQuestion.category.image}}"/>
+      <div class="text">{{currentQuestion.category.title}}</div>
+    </div>
+  </div>
+  <div class="pass" [hidden]="!replied" (click)="nextQuestion()">Suivant</div>
+  <div class="pass" [hidden]="replied" (click)="doNotReply()">Ne pas répondre</div>
+</div>
+</ion-content>
