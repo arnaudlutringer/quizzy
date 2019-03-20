@@ -13,7 +13,7 @@ import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
   LoadingPage, GameLoaderPage, QuestionsPage, ReplyLoaderPage, 
   ReplyPage, SettingsPage, SettingsInterestsPage } from '../pages/pages';
   import { Facebook } from "@ionic-native/facebook";
-  import { CategoryProvider, FacebookService, User, Api, Translate } from '../providers/providers';
+  import { CategoryProvider, FacebookService, User, Api, Translate, StringUtils } from '../providers/providers';
   import { StatusBar } from '@ionic-native/status-bar';
   import { SplashScreen } from '@ionic-native/splash-screen';
   import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
@@ -80,7 +80,8 @@ import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
     User,
     Api,
     Globalization,
-    Translate
+    Translate,
+    StringUtils
     ]
   })
   export class AppModule {}

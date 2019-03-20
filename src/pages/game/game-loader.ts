@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage, GamePage } from '../pages';
+import { User, Api } from '../../providers/providers';
 
 @Component({
 	selector: 'page-game-loader',
@@ -20,24 +21,56 @@ export class GameLoaderPage extends AbstractPage {
 		public navCtrl: NavController,
 		public alertCtrl: AlertController,
 		public storage: Storage,
-        public toastCtrl: ToastController,
-        public modalCtrl: ModalController,
-        public params: NavParams) {
+		public toastCtrl: ToastController,
+		public modalCtrl: ModalController,
+		public params: NavParams,
+		public user: User, 
+		public api: Api) {
 		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
-		this.startTimer();
 		this.friendChosen = this.params.get('friend');
+
+		this.loadQuestions();
+
+		
 	}
 
-	startTimer(){
+	async loadQuestions(){
+		console.log('Récupération des questions non répondues du user ' + this.friendChosen.id);
+		const questions = await this.getQuestionsNotResponded(this.friendChosen.id, this.user.getId());
+		this.startTimer(questions);
+	}
+
+	startTimer(questions){
 		this.timer = setInterval(x => 
 		{
 			this.remaining -= this.delai / 1000;
 			if(this.remaining <= 0){
-				this.goTo(GamePage, 'forward', {})
+				this.goTo(GamePage, 'forward', {'questions':questions});
 				clearInterval(this.timer);
 			}
 		}, this.delai);
 	}
 
+	getQuestionsNotResponded(userChosen, user){
+		return new Promise((resolve, reject)=>{
+			let data: any;
+			data = {};
+			data.userChosen = userChosen;
+			data.user = user;
+
+			this.api.post('question/get-questions-not-responded', data)
+			.subscribe(
+				(data) => {
+					let body: any;
+					body = JSON.parse(data.text());
+						resolve(body);
+				},
+				(err) => {
+				},
+				() => {
+					//this.goToHome();
+				});
+		});
+	}
 
 }

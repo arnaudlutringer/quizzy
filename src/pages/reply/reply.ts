@@ -85,8 +85,20 @@ export class ReplyPage extends AbstractPage {
 			this.questions[this.currentQuestionId].goodAnswer += string;
 		}
 
+		this.questions[this.currentQuestionId].goodAnswer = this.sortQCM();
+
 		this.replied = (this.questions[this.currentQuestionId].goodAnswer != '');
 		
+	}
+
+	sortQCM(){
+		let arr = this.questions[this.currentQuestionId].goodAnswer.split(';').sort();
+		this.questions[this.currentQuestionId].goodAnswer ='';
+		for(let item of arr){
+			if(item){
+				this.questions[this.currentQuestionId].goodAnswer += item + ';';
+			}
+		}
 	}
 
 	getQCMClass(answerChosen){

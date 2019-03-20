@@ -10,12 +10,12 @@ page-game {
 	}
 
 	.answers{
-    height: 68%;
+		height: 74%;
 	}
 
 	.answer{
 		width: 50%;
-		height: 25%;
+		height: 100%;
 		margin: auto;
 		display: flex;
 		justify-content: center;
@@ -42,19 +42,19 @@ page-game {
 		box-shadow: 0px 0px 10px 1px white;
 	}
 
-	.answer > .padding-block > .block:hover{
+	.answer > .padding-block > .block.selected{
 		background-color: white;	
 		color: #2C2C2C;	
 	}
 
-	.answer > .padding-block > .block.good{
-		background-color: #44bd32;	
-		color: white;	
+	.answer > .padding-block > .block.good, .good{
+		background-color: #44bd32 !important;	
+		color: white  !important;
 	}
 
-	.answer > .padding-block > .block.bad{
-		background-color: #e84118;	
-		color: white;	
+	.answer > .padding-block > .block.bad, .bad{
+		background-color: #e84118 !important;	
+		color: white !important;
 	}
 
 
@@ -101,7 +101,7 @@ page-game {
 		border-radius: 44px;
 		height: 44px;
 		margin-top: 2px;
-    width: 100%;
+		width: 100%;
 	}
 
 	.actions .domain .domain-block img{
@@ -321,5 +321,75 @@ page-game {
 		align-items: center;
 		width: calc(100% - 64px);
 		font-size: 18px;
+	}
+
+	.swiper-slide{
+		font-size: 0.9em;
+	}
+	
+	.swiper-slide.swiper-slide-prev{
+		opacity: 0.3;
+	}
+
+	.swiper-slide.swiper-slide-next{
+		opacity: 0.3;
+	}
+
+	.qs-row{
+		height: 30%;
+		text-align: center;
+		background-color: transparent;
+		border-radius: 5px;
+		padding: 10px;
+		font-size: 1.2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 30%;
+		position: relative;
+
+	}
+
+	.qs-row.dateYMD, .qs-row.dateYM, .qs-row.dateY{
+		width: calc(100% - 80px);
+		margin: auto;
+	}
+
+	.qs-row.valided{
+		box-shadow: 0px 0px 10px 1px white;
+		background-color: #44bd32;
+		color: white;
+	}
+
+	.qs-actions:not(.qcm):not(.qs){
+		top: 50%;
+		height: 30%;
+		position: relative;
+	}
+
+	.qs-response{
+		top: 40%;
+		position: relative;
+	}
+
+	.input-int, .input-text{
+		background: white;
+		color: #2C2C2C;
+		padding: 10px;
+		border-radius: 5px;
+		font-size: 30px;
+		white-space: 11px;
+		box-shadow: 0px 0px 5px 1px white;
+		letter-spacing: 1px;
+	}
+
+	.input-int.valided, .input-text.valided {
+		background: #44bd32;
+		color: white;
+		box-shadow: none;
+	}
+
+	.input-int > input, .input-text > input{
+		text-align: center;		
 	}
 }
