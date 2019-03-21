@@ -127,7 +127,7 @@ export class GamePage extends AbstractPage {
 	}
 
 	setQCMGood(answerChosen){
-		let string = new String(answerChosen+';');
+		let string = answerChosen+';';
 		let indexof = this.qcm_value.indexOf(string);
 		if(indexof > -1){
 			this.qcm_value=this.qcm_value.replace(string, '');
@@ -149,14 +149,14 @@ export class GamePage extends AbstractPage {
 
 	getQCMClass(answerChosen){
 		if(!this.replied){
-			if(this.qcm_value.indexOf(new String(answerChosen+';')) > -1){
+			if(this.qcm_value.indexOf(answerChosen+';') > -1){
 				return 'selected';
 			}
 		}else{
-			if(this.currentQuestion.goodAnswer.indexOf(new String(answerChosen+';')) > -1){
+			if(this.currentQuestion.goodAnswer.indexOf(answerChosen+';') > -1){
 				return 'good';
 			}else{
-				if(this.qcm_value.indexOf(new String(answerChosen+';')) > -1){
+				if(this.qcm_value.indexOf(answerChosen+';') > -1){
 					return 'bad';
 				}
 			}	
