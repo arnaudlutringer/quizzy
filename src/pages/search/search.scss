@@ -1,0 +1,52 @@
+page-search {
+
+	ion-grid.grid.sub-header > ion-row{
+		border: solid 1px white;
+		border-radius: 5px;
+	}
+
+	ion-grid.grid.sub-header > ion-row > ion-col{
+		text-align: center;
+	}
+
+	ion-grid.grid.sub-header > ion-row > ion-col:first-child{
+
+		border-right: solid 1px white;
+	}
+
+	ion-grid.grid.sub-header > ion-row > ion-col.active{	
+		background: white;
+		color: color($colors, danger);
+		font-weight: bold;
+	}
+
+	ion-grid > .user{
+		background-color: white;
+		color: #2C2C2C;
+    margin-bottom: 5px;
+	}
+
+	.responses{
+    text-align: center;
+    font-weight: bold;
+    color: #2C2C2C;
+    background-color: white;
+    border: solid 1px #2C2C2C;
+    font-size: 0.8em;
+	}
+
+	.menu{
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.username{
+		font-weight: bold;
+	}
+
+	button.send{
+    height: 1.6em;
+    font-size: 1.3rem;
+    padding: 0 0.9em;
+	}
+}

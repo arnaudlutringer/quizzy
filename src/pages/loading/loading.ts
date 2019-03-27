@@ -6,7 +6,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 import { AbstractPage } from '../abstract';
 import { GamePage, GameLoaderPage } from '../pages';
-import { FacebookService, Api, User, CategoryProvider, Translate } from '../../providers/providers';
+import { FacebookService, Api, User, Friends, CategoryProvider, Translate } from '../../providers/providers';
 
 @Component({
 	selector: 'page-loading',
@@ -25,6 +25,7 @@ export class LoadingPage extends AbstractPage {
 		public facebook: FacebookService,
 		public api: Api,
 		public user: User,
+		public friends: Friends,
 		public category: CategoryProvider,
 		public translate: Translate) {
 		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
@@ -41,7 +42,9 @@ export class LoadingPage extends AbstractPage {
 	async loadElements(){
 		const cats= await this.category.load();
 
-		const user= await this.user.load(2);
+		const user= await this.user.load(1);
+
+		const friends= await this.friends.load();
 
 		this.goToProfile('forward');
 	}

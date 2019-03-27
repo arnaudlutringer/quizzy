@@ -205,6 +205,8 @@ page-game {
 		border-radius: 5px;
 		border: solid 1px white;
 		height: 20px;
+		font-size: 0.8em;
+		padding: 2px 0 0 0;
 	}
 
 	.pre-game{
@@ -326,7 +328,7 @@ page-game {
 	.swiper-slide{
 		font-size: 0.9em;
 	}
-	
+
 	.swiper-slide.swiper-slide-prev{
 		opacity: 0.3;
 	}
@@ -361,15 +363,18 @@ page-game {
 		color: white;
 	}
 
-	.qs-actions:not(.qcm):not(.qs){
-		top: 50%;
-		height: 30%;
-		position: relative;
+	.qs-actions{
+		position: absolute;
+		bottom: calc(12%);
+		height: 12%;
+		width: 100%;
+		margin-left: -16px;
 	}
 
 	.qs-response{
 		top: 40%;
 		position: relative;
+		font-size: 1.2em;
 	}
 
 	.input-int, .input-text{

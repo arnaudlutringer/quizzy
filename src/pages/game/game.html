@@ -144,7 +144,7 @@
  </ion-row>
   <ion-row class="qs-actions">
     <div style="text-align:center;width:100%">
-     <button ion-button icon-start (click)="validYMD()">Valider</button>
+     <button ion-button icon-start (click)="validYMD(true)" [hidden]="replied">Valider</button>
    </div>
  </ion-row>
 </ng-container>
@@ -175,7 +175,7 @@
  </ion-row>
   <ion-row class="qs-actions">
     <div style="text-align:center;width:100%">
-     <button ion-button icon-start (click)="validYM()">Valider</button>
+     <button ion-button icon-start (click)="validYM(true)" [hidden]="replied">Valider</button>
    </div>
  </ion-row>
 </ng-container>
@@ -198,7 +198,7 @@
  </ion-row>
   <ion-row class="qs-actions">
     <div style="text-align:center;width:100%">
-     <button ion-button icon-start (click)="validY()">Valider</button>
+     <button ion-button icon-start (click)="validY(true)" [hidden]="replied">Valider</button>
    </div>
  </ion-row>
 </ng-container>

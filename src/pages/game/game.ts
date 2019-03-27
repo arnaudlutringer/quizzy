@@ -5,7 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage } from '../pages';
-import { StringUtils } from '../../providers/providers';
+import { StringUtils, Api, User, Friends } from '../../providers/providers';
 
 @Component({
 	selector: 'page-game',
@@ -50,10 +50,14 @@ export class GamePage extends AbstractPage {
 		public modalCtrl: ModalController,
 		public params: NavParams,
 		private sanitizer: DomSanitizer,
-		public stringUtils: StringUtils) {
+		public stringUtils: StringUtils,
+		public api: Api,
+		public user: User,
+		public friendsProvider: Friends) {
 		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
 
 		this.questions = this.params.get('questions');
+		
 		this.prepareLists();
 
 		this.currentQuestion = this.questions[this.currentQuestionId];
@@ -83,7 +87,20 @@ export class GamePage extends AbstractPage {
 			this.remaining = (Math.floor(time / 1000) + 1).toString();
 			if(this.taux == 100){
 				this.verify(null, null);
-				this.replied = true;
+				switch(this.currentQuestion.type.name){
+					case 'YMD':{
+						this.validYMD(false);
+					}
+					case 'YM':{
+						this.validYM(false);
+					}
+					case 'Y':{
+						this.validY(false);
+					}
+					default :{
+						this.replied = true;
+					}
+				}
 			}
 		}, delai * 1000);
 	}
@@ -108,33 +125,60 @@ export class GamePage extends AbstractPage {
 				this.questionStatus ='good';
 				if(this.taux < 30){
 					this.toast('+5');
-					return;
+					this.friendsProvider.updateScore(5);
 				}
 
-				if(this.taux < 70){
+				if(this.taux >= 31 && this.taux < 70){
 					this.toast('+3');
-					return;
+					this.friendsProvider.updateScore(3);
 				}
 
-				if(this.taux < 100){
+				if(this.taux >= 71 && this.taux < 100){
 					this.toast('+1');
-					return;
+					this.friendsProvider.updateScore(1);
 				}
 			}else{
 				this.questionStatus ='bad';
+				this.friendsProvider.updateScore(0);
 			}
+
+			// Envoi de la réponse
+			this.saveResponse(this.currentQuestion.id, answerChosen, equal);
+			return;
 		}
 	}
 
+	saveResponse(questionId, answer, good){
+		let data: any;
+			data = {};
+			data.user_played_id = this.friendsProvider.getCurrentFriend().getId();
+			data.user_id = this.user.getId();
+			data.question_id = questionId;
+			data.response = answer;
+			data.good = good;
+
+			this.api.post('question/save-response', data)
+			.subscribe(
+				(data) => {
+				},
+				(err) => {
+				},
+				() => {
+					//this.goToHome();
+				});
+	}
+
 	setQCMGood(answerChosen){
-		let string = answerChosen+';';
-		let indexof = this.qcm_value.indexOf(string);
-		if(indexof > -1){
-			this.qcm_value=this.qcm_value.replace(string, '');
-		}else{
-			this.qcm_value += string;
+		if(!this.replied){
+			let string = answerChosen+';';
+			let indexof = this.qcm_value.indexOf(string);
+			if(indexof > -1){
+				this.qcm_value=this.qcm_value.replace(string, '');
+			}else{
+				this.qcm_value += string;
+			}
+			this.sortQCM();
 		}
-		this.sortQCM();
 	}
 
 	sortQCM(){
@@ -166,7 +210,9 @@ export class GamePage extends AbstractPage {
 
 
 	setGood(answerChosen){
-		this.qs_value = answerChosen;
+		if(!this.replied){
+			this.qs_value = answerChosen;
+		}
 	}
 
 	getClass(answerChosen){
@@ -187,7 +233,7 @@ export class GamePage extends AbstractPage {
 
 	}
 
-	validYMD(){
+	validYMD(replied){
 		let date = this.sliderYear._slides[this.sliderYear.getActiveIndex()].innerText+ 
 		'-' +
 		this.sliderMonth._slides[this.sliderMonth.getActiveIndex()].dataset.value + 
@@ -202,7 +248,7 @@ export class GamePage extends AbstractPage {
 		this.replied = true;
 	}
 
-	validYM(){
+	validYM(replied){
 		let date = this.sliderYear._slides[this.sliderYear.getActiveIndex()].innerText+ 
 		'-' +
 		this.sliderMonth._slides[this.sliderMonth.getActiveIndex()].dataset.value;
@@ -214,7 +260,7 @@ export class GamePage extends AbstractPage {
 		this.replied = true;
 	}
 
-	validY(){
+	validY(replied){
 		let date = this.sliderYear._slides[this.sliderYear.getActiveIndex()].innerText;
 
 		this.verify(date, this.currentQuestion.goodAnswer);		
@@ -253,17 +299,20 @@ export class GamePage extends AbstractPage {
 			this.showResponses = false;
 			this.currentResponse =null;
 			this.replied = false;
-			this.startShowCategory();
 			this.currentQuestion = this.questions[this.currentQuestionId];
 			this.temps = this.currentQuestion.type.time;
+			this.startShowCategory();
 
 			// Réinitilisation des valeurs
 			this.qcm_value = '';
 			this.qs_value = '';
+			this.int_value = null;
+			this.text_value = '';
 		}
 	}
 
 	quit(){
+		this.verify(null, null);
 		this.goToProfile('forward');
 		this.reinitQuestionGame();
 	}

@@ -8,9 +8,11 @@ export class User {
 
 	private id: number;
 
-	private usualName: string;
+	private username: string;
 
 	private categories:any[];
+
+	private friends:any[];
 
 	constructor(public storage: Storage, public api: Api, public categoryProvider: CategoryProvider) {	}
 
@@ -22,14 +24,19 @@ export class User {
 		return this.id;
 	}
 
-	getUsualName(){
-		return this.usualName;
+	getUsername(){
+		return this.username;
+	}
+
+	getFriends(){
+		return this.friends;
 	}
 
 	getModel(){
 		let result:any = {};
 		result.id = this.id;
 		result.categories = this.categories;
+		result.friends = this.friends;
 		return result;
 	}
 
@@ -46,7 +53,8 @@ export class User {
 					body = JSON.parse(data.text());
 
 					this.id = body['id'];
-					this.usualName = body['usualName'];
+					this.username = body['username'];
+					this.friends = body['friends'];
 
 					this.categories = new Array();
 

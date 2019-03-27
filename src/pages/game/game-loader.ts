@@ -45,7 +45,7 @@ export class GameLoaderPage extends AbstractPage {
 		{
 			this.remaining -= this.delai / 1000;
 			if(this.remaining <= 0){
-				this.goTo(GamePage, 'forward', {'questions':questions});
+				this.goTo(GamePage, 'forward', {'questions':questions, 'userPlayed':this.friendChosen.id});
 				clearInterval(this.timer);
 			}
 		}, this.delai);

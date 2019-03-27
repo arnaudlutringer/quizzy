@@ -32,6 +32,9 @@ export class StringUtils {
   }
 
   cleanTextForGame(str){
+    if(!str){
+      return '';
+    }
     var result = this.removeAccents(str);
     result = this.toUpperCase(result);
     result = this.trim(result);

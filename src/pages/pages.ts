@@ -7,6 +7,7 @@ import { GameLoaderPage } from './game/game-loader';
 import { QuestionsPage } from './questions/questions';
 import { ReplyPage } from './reply/reply';
 import { ReplyLoaderPage } from './reply/reply-loader';
+import { SearchPage } from './search/search';
 import { SettingsPage, SettingsInterestsPage } from './settings/settings';
 
 // Pages
@@ -21,5 +22,6 @@ export {
 	ReplyLoaderPage,
 	QuestionsPage,
 	SettingsPage,
-	SettingsInterestsPage
+	SettingsInterestsPage,
+	SearchPage
 };

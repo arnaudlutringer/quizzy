@@ -3,7 +3,7 @@
     <ion-row>
       <ion-col col-3 (click)="goToProfile('back')"><ion-icon name="people"></ion-icon></ion-col>
       <ion-col col-3 class="active"><ion-icon name="play"></ion-icon></ion-col>
-      <ion-col col-3><ion-icon name="search"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToSearch('forward')"><ion-icon name="search"></ion-icon></ion-col>
       <ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
     </ion-row>
   </ion-navbar>
@@ -43,13 +43,13 @@
         <ion-col col-8>
           <ion-row>
             <ion-col col-12 class="title">{{question.title}}</ion-col>
-            <ion-col col-12 text-right class="answer" *ngIf="question.goodAnswer.text != null">
+            <ion-col col-12 text-right class="answer" *ngIf="isReplied(question.goodAnswer)">
               <div *ngFor="let response of question.goodAnswer.text">
                 <ng-container *ngIf="response.text">{{response.text}}</ng-container>
                 <ng-container *ngIf="!response.text">{{response}}</ng-container>
                 </div>
             </ion-col>
-            <ion-col col-12 text-right class="answer not-replied" *ngIf="question.goodAnswer.text == null">Non répondu</ion-col>
+            <ion-col col-12 text-right class="answer not-replied" *ngIf="!isReplied(question.goodAnswer)">Non répondu</ion-col>
           </ion-row>
         </ion-col>
         <ion-col col-2>

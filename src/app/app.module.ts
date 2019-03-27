@@ -11,9 +11,9 @@ import {Http, HttpModule} from '@angular/http';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
   LoadingPage, GameLoaderPage, QuestionsPage, ReplyLoaderPage, 
-  ReplyPage, SettingsPage, SettingsInterestsPage } from '../pages/pages';
+  ReplyPage, SettingsPage, SettingsInterestsPage, SearchPage } from '../pages/pages';
   import { Facebook } from "@ionic-native/facebook";
-  import { CategoryProvider, FacebookService, User, Api, Translate, StringUtils } from '../providers/providers';
+  import { CategoryProvider, FacebookService, User, Api, Friends, Translate, StringUtils } from '../providers/providers';
   import { StatusBar } from '@ionic-native/status-bar';
   import { SplashScreen } from '@ionic-native/splash-screen';
   import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
@@ -31,7 +31,8 @@ import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
     ReplyLoaderPage,
     QuestionsPage,
     SettingsPage, 
-    SettingsInterestsPage
+    SettingsInterestsPage,
+    SearchPage
     ],
     imports: [
     BrowserModule,
@@ -67,7 +68,8 @@ import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
     ReplyLoaderPage,
     QuestionsPage,
     SettingsPage,
-    SettingsInterestsPage
+    SettingsInterestsPage,
+    SearchPage
     ],
     providers: [
     StatusBar,
@@ -79,6 +81,7 @@ import { ProfilePage, ProfileCommentsPage, ContactPage, GamePage,
     FacebookService,
     User,
     Api,
+    Friends,
     Globalization,
     Translate,
     StringUtils

@@ -43,7 +43,9 @@ export class QuestionsPage extends AbstractPage {
 				body = JSON.parse(data.text());
 
 				this.baseQuestions = body;
-				this.questions = this.baseQuestions
+				this.questions = this.baseQuestions;
+
+				console.log(this.questions);
 			},
 			(err) => {
 			},
@@ -58,6 +60,13 @@ export class QuestionsPage extends AbstractPage {
 
 	goToReply(){
 		this.goTo(ReplyLoaderPage, 'forward', {});
+	}
+
+	isReplied(answer){
+		if(answer.text.length == 1 && answer.text[0] == null){
+			return false;
+		}
+		return true;
 	}
 
 	delete(questionId){

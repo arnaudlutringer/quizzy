@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-3 (click)="goToProfile('back')"><ion-icon name="people"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToQuestions('back')"><ion-icon name="play"></ion-icon></ion-col>
+      <ion-col col-3 class="active"><ion-icon name="search"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div layout vertical>
+    <div flex three >
+      <div>
+        <ion-grid class="sub-header">
+          <ion-row>
+            <ion-col col-6 [class]="menuToggle == 1 ? 'text-center active' : 'text-center'" (click)="show(1)">
+              <div class="text-muted text-xs l-s-1x m-t-xs"><ion-icon name="play"></ion-icon>&nbsp;Rechercher</div>
+            </ion-col>
+            <ion-col col-6 [class]="menuToggle == 2 ? 'text-center active' : 'text-center'" (click)="show(2)">
+              <div class="text-muted text-xs l-s-1x m-t-xs"><ion-icon name="trophy"></ion-icon>&nbsp;Mot de passe
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="menuToggle == 1">
+    <ion-searchbar placeholder="Recherche par nom" [(ngModel)]="search" (ionInput)="searchUser($event)"></ion-searchbar>
+    <div class="search">
+      <ion-grid class="users">
+        <ion-row *ngFor="let user of users; let i = index" class="user">
+          <ion-col col-2>
+            <div class="align-center-center"><img [src]="user.imageAccount"/></div>
+          </ion-col>
+          <ion-col col-6>
+            <ion-row>
+              <ion-col col-12 class="username">{{user.username}}</ion-col>
+              <ion-col col-12 class="description">{{user.description}}</ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col col-4>
+            <ion-row>
+              <ion-col col-12 class="responses">{{user.responses}} questions</ion-col>
+              <ion-col col-12 class="menu">
+                <button ion-button small color="primary" class="send">Inviter</button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="menuToggle == 2">
+    <div class="passwd align-center-center">
+
+    </div>
+  </ng-container>
+</ion-content>

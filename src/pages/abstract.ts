@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, AlertController, NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
-import { ProfilePage, QuestionsPage, SettingsPage } from './pages';
+import { ProfilePage, QuestionsPage, SettingsPage, SearchPage } from './pages';
 
 @Component({})
 export class AbstractPage {
@@ -25,6 +25,10 @@ export class AbstractPage {
 
     goToQuestions(direction){
         this.goTo(QuestionsPage, direction, {});
+    }
+
+    goToSearch(direction){
+        this.goTo(SearchPage, direction, {});
     }
 
     goToSettings(direction){

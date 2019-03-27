@@ -47,6 +47,10 @@ export class CategoryProvider {
 				(data) => {
 					let body: any;
 					this.categories = JSON.parse(data.text());
+					for(let categorie of this.categories){
+						let imgCat = new Image();
+						imgCat.src = categorie.picture;
+					}
 					resolve();
 				},
 				(err) => {
