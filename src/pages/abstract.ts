@@ -90,7 +90,9 @@ export class AbstractPage {
 
     getNotifications(idMenu){
       if(idMenu == 1){
-          return this.header.getNotifications().profile;
+        console.log(this.header.getNotifications());
+        console.log(this.header.getNotifications().getProfile());
+          return this.header.getNotifications().getProfile();
       }
       return new Array();
     }

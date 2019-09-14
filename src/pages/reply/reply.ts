@@ -5,7 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { QuestionsPage } from '../pages';
-import { Api, User } from '../../providers/providers';
+import { Api, User, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-reply',
@@ -42,8 +42,9 @@ export class ReplyPage extends AbstractPage {
 		public modalCtrl: ModalController,
 		public params: NavParams,
 		public api: Api,
+        public header: HeaderProvider,
 		public user: User) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.questions = params.get('questions');
 		this.prepareLists();
 	}

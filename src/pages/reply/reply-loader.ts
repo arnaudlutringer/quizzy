@@ -4,7 +4,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage, ReplyPage } from '../pages';
-import { Api, User } from '../../providers/providers';
+import { Api, User, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-reply-loader',
@@ -24,9 +24,10 @@ export class ReplyLoaderPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		public api: Api,
 		public user: User) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.startTimer();
 	}
 

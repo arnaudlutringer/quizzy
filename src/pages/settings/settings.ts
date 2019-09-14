@@ -53,9 +53,10 @@ export class SettingsInterestsPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		public categoryProvider: CategoryProvider,
 		public user: User) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.categories=this.categoryProvider.sort();
 	}
 

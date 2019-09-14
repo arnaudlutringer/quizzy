@@ -8,12 +8,11 @@ export class HeaderProvider {
 	private notifications:Notifications;
 
 	constructor(public storage: Storage, public api: Api, public user: User) {	
-		console.log(this.notifications);
-		this.loadProfile();
 	}
 
 
 	async loadProfile(){
+		this.notifications = new Notifications();
 		const notificationsFounded = await this.getApiNotifications();
 		this.notifications.setProfile(notificationsFounded['profile']);
 
@@ -28,6 +27,8 @@ export class HeaderProvider {
 			let data: any;
 			data = {};
 			data.lastConnected = this.user.getLastConnected();
+
+			console.log(this.user);
 
 			this.api.post('user/' + this.user.getId() + '/get-notifications', data)
 			.subscribe(
@@ -56,20 +57,31 @@ export class Notifications {
 
 	private settings: any[];
 
-	setProfile(notif){
+	constructor() {
+		this.profile = new Array();
+		this.play = new Array();
+		this.search = new Array();
+		this.settings = new Array();
+	}
+
+	setProfile(notifs){
 		this.profile= notifs;
 	}
 
-	setPlay(notif){
+	setPlay(notifs){
 		this.play= notifs;
 	}
 
-	setSearch(notif){
+	setSearch(notifs){
 		this.search= notifs;
 	}
 
-	setSettings(notif){
+	setSettings(notifs){
 		this.settings= notifs;
+	}
+
+	getProfile(){
+		return this.profile;
 	}
 
 }

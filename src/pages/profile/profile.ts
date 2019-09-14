@@ -86,8 +86,9 @@ export class ProfileCommentsPage extends AbstractPage {
 		public storage: Storage,
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
+        public header: HeaderProvider,
 		public params: NavParams) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.friend = this.params.get('friend');
 		this.me = {
 			'account_image' : 'http://img.over-blog.com/481x500/4/04/49/24/Nov2010/winnie-the-pooh.jpg',
