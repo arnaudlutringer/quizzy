@@ -49,7 +49,7 @@ ion-content{
 .description{
 	font-style: italic;
 	color: #C2C2C2;
-    font-size: .8em;
+	font-size: .8em;
 }
 
 .h-full {
@@ -76,8 +76,8 @@ ion-header > ion-navbar .toolbar-title{
 }
 
 ion-header ion-row{
-    height: 55px;
-    border-bottom: solid 1px #F2F2F2;
+	height: 55px;
+	border-bottom: solid 1px #F2F2F2;
 }
 
 ion-header ion-col{
@@ -89,9 +89,19 @@ ion-header ion-col{
 }
 
 ion-header ion-col.active{
-    color: color($colors, danger);
+	color: color($colors, danger);
 }
 
 ion-list-header{
-    background: #ddd !important;
+	background: #ddd !important;
+}
+
+ion-toast.toast-error > .toast-wrapper {
+	background-color: rgba(255, 0, 0, 0.9);
+}
+
+ion-header  ion-navbar ion-badge {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 10px);
 }

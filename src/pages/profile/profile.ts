@@ -6,7 +6,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 import { AbstractPage } from '../abstract';
 import { GamePage, GameLoaderPage } from '../pages';
-import { FacebookService, Friends } from '../../providers/providers';
+import { FacebookService, Friends, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-profile',
@@ -27,9 +27,10 @@ export class ProfilePage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		public facebook: FacebookService,
 		public friendsProvider: Friends) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.doughnut = [1000, 2000, 3000];
 	}
 

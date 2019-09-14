@@ -14,10 +14,16 @@ export class User {
 
 	private friends:any[];
 
+	private lastConnected:number;
+
 	constructor(public storage: Storage, public api: Api, public categoryProvider: CategoryProvider) {	}
 
 	getCategories(){
 		return this.categories;
+	}
+
+	getLastConnected(){
+		return this.lastConnected;
 	}
 
 	getId(){
@@ -55,7 +61,9 @@ export class User {
 					this.id = body['id'];
 					this.username = body['username'];
 					this.friends = body['friends'];
-
+					this.lastConnected = body['lastConnected'];
+					console.log(this.lastConnected);
+					
 					this.categories = new Array();
 
 					let hisCategories:number[] = body.categories;
@@ -66,8 +74,11 @@ export class User {
 							category.selected = 0;
 						}
 						this.categories.push(category);
-						resolve();
+
 					}
+					this.updateLastConnected();
+
+					resolve();
 				},
 				(err) => {
 				},
@@ -83,6 +94,24 @@ export class User {
 		data.categories = this.categoryProvider.getAllSelected();
 
 		this.api.post('user/'+this.id+'/update-categories', data)
+		.subscribe(
+			(data) => {
+				let body: any;
+				this.categories = JSON.parse(data.text());
+			},
+			(err) => {
+			},
+			() => {
+				//this.goToHome();
+			});
+	}
+
+	updateLastConnected(){
+		let data: any;
+		data = {};
+		data.lastConnected = Date.now() / 1000;
+
+		this.api.post('user/'+this.id+'/update-last-connected', data)
 		.subscribe(
 			(data) => {
 				let body: any;

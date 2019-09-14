@@ -5,7 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage, ReplyLoaderPage } from '../pages';
-import { Api, User } from '../../providers/providers';
+import { Api, User, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-search',
@@ -24,10 +24,11 @@ export class SearchPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		private sanitizer: DomSanitizer,
 		public user: User,
 		public api: Api) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 	}
 
 	show(menu){
@@ -45,6 +46,28 @@ export class SearchPage extends AbstractPage {
 		return true;
 	}
 
+	invite(idUser){
+		console.log("Invitation de " + idUser);
+		let data: any;
+			data = {};
+			data.userInvited = idUser;
+
+			this.api.post('user/' + this.user.getId() + '/invite', data)
+			.subscribe(
+				(data) => {
+					var body = JSON.parse(data.text());
+					if(body.error){
+						this.toastError(body.message.text);
+					}
+				},
+				(err) => {
+					this.toast('Une erreur est survenue');
+				},
+				() => {
+					//this.goToHome();
+				});
+	}
+
 	async searchUser(event){
 		if(this.search.length >= 3){
 			const found = await this.loadSearch(this.search);
@@ -55,7 +78,7 @@ export class SearchPage extends AbstractPage {
 	}
 
 	loadSearch(search){
-		return new Promise((resolve, reject) => {
+		return new Promise<any[]>((resolve, reject) => {
 			let data: any;
 			data = {};
 			data.search = search;
@@ -66,7 +89,7 @@ export class SearchPage extends AbstractPage {
 					let users:any[] = JSON.parse(data.text());
 					for(let user of users){
 						let userImg = new Image();
-						userImg.src = user['imageAccount'];
+						userImg.src = user['image_account'];
 					}
 					resolve(users);
 				},

@@ -1,10 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-row>
-      <ion-col col-3 (click)="goToProfile('back')"><ion-icon name="people"></ion-icon></ion-col>
-      <ion-col col-3 (click)="goToQuestions('back')"><ion-icon name="play"></ion-icon></ion-col>
-      <ion-col col-3 class="active"><ion-icon name="search"></ion-icon></ion-col>
-      <ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
+      <ion-col col-3 (click)="goToProfile('back')">
+        <ion-icon name="people"></ion-icon>
+        <ng-container *ngIf="getNotifications(1).length > 0">
+          <ion-badge color="danger">{{getNotifications(1).length}}</ion-badge>
+        </ng-container>
+      </ion-col>
+      <ion-col col-3 (click)="goToQuestions('back')">
+        <ion-icon name="play"></ion-icon>
+        <ng-container *ngIf="getNotifications(2).length > 0">
+          <ion-badge color="danger">{{getNotifications(2).length}}</ion-badge>
+        </ng-container>
+      </ion-col>
+      <ion-col col-3 class="active">
+        <ion-icon name="search"></ion-icon>
+        <ng-container *ngIf="getNotifications(3).length > 0">
+          <ion-badge color="danger">{{getNotifications(3).length}}</ion-badge>
+        </ng-container>
+      </ion-col>
+      <ion-col col-3 (click)="goToSettings('forward')">
+        <ion-icon name="settings"></ion-icon>
+        <ng-container *ngIf="getNotifications(4).length > 0">
+          <ion-badge color="danger">{{getNotifications(1).length}}</ion-badge>
+        </ng-container>
+      </ion-col>
     </ion-row>
   </ion-navbar>
 </ion-header>
@@ -33,7 +53,7 @@
       <ion-grid class="users">
         <ion-row *ngFor="let user of users; let i = index" class="user">
           <ion-col col-2>
-            <div class="align-center-center"><img [src]="user.imageAccount"/></div>
+            <div class="align-center-center"><img [src]="user.image_account"/></div>
           </ion-col>
           <ion-col col-6>
             <ion-row>
@@ -45,7 +65,12 @@
             <ion-row>
               <ion-col col-12 class="responses">{{user.responses}} questions</ion-col>
               <ion-col col-12 class="menu">
-                <button ion-button small color="primary" class="send">Inviter</button>
+                <ng-container *ngIf="user.status != null">
+                  <button ion-button small color="primary" class="send" (click)="invite(user.id)">Inviter</button>
+                </ng-container>
+                <ng-container *ngIf="user.status != null">
+                  {{user.status.label}}
+                </ng-container>
               </ion-col>
             </ion-row>
           </ion-col>

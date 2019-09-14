@@ -4,7 +4,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage } from '../pages';
-import { CategoryProvider, User } from '../../providers/providers';
+import { CategoryProvider, User, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-settings',
@@ -21,8 +21,9 @@ export class SettingsPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		public categoryProvider: CategoryProvider) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 	}
 
 	ionViewWillEnter(){

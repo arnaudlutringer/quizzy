@@ -22,7 +22,6 @@ import { Globalization } from "@ionic-native/globalization/ngx";
     constructor(public translate: TranslateService,
       public storage: Storage,
       public globalization: Globalization) {
-      console.log('Provider : Translate');
     }
 
     getDefaultLang(){

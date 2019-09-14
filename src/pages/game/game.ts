@@ -5,7 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage } from '../pages';
-import { StringUtils, Api, User, Friends } from '../../providers/providers';
+import { StringUtils, Api, User, Friends, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-game',
@@ -52,9 +52,10 @@ export class GamePage extends AbstractPage {
 		private sanitizer: DomSanitizer,
 		public stringUtils: StringUtils,
 		public api: Api,
+        public header: HeaderProvider,
 		public user: User,
 		public friendsProvider: Friends) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 
 		this.questions = this.params.get('questions');
 		

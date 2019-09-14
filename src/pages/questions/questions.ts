@@ -5,7 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage, ReplyLoaderPage } from '../pages';
-import { Api, User } from '../../providers/providers';
+import { Api, User, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-questions',
@@ -27,10 +27,11 @@ export class QuestionsPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		private sanitizer: DomSanitizer,
 		public user: User,
 		public api: Api) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.display=1;
 		//this.mock();
 		let data: any;

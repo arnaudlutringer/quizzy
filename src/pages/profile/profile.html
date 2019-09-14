@@ -1,10 +1,30 @@
 <ion-header>
 	<ion-navbar>
 		<ion-row>
-			<ion-col col-3 class="active"><ion-icon name="people"></ion-icon></ion-col>
-			<ion-col col-3 (click)="goToQuestions('forward')"><ion-icon name="play"></ion-icon></ion-col>
-			<ion-col col-3 (click)="goToSearch('forward')"><ion-icon name="search"></ion-icon></ion-col>
-			<ion-col col-3 (click)="goToSettings('forward')"><ion-icon name="settings"></ion-icon></ion-col>
+			<ion-col col-3 class="active">
+				<ion-icon name="people"></ion-icon>
+				<ng-container *ngIf="getNotifications(1).length > 0">
+					<ion-badge color="danger">{{getNotifications(1).length}}</ion-badge>
+				</ng-container>
+			</ion-col>
+			<ion-col col-3 (click)="goToQuestions('forward')">
+				<ion-icon name="play"></ion-icon>
+				<ng-container *ngIf="getNotifications(2).length > 0">
+					<ion-badge color="danger">{{getNotifications(2).length}}</ion-badge>
+				</ng-container>
+			</ion-col>
+			<ion-col col-3 (click)="goToSearch('forward')">
+				<ion-icon name="search"></ion-icon>
+				<ng-container *ngIf="getNotifications(3).length > 0">
+					<ion-badge color="danger">{{getNotifications(3).length}}</ion-badge>
+				</ng-container>
+			</ion-col>
+			<ion-col col-3 (click)="goToSettings('forward')">
+				<ion-icon name="settings"></ion-icon>
+				<ng-container *ngIf="getNotifications(4).length > 0">
+					<ion-badge color="danger">{{getNotifications(1).length}}</ion-badge>
+				</ng-container>
+			</ion-col>
 		</ion-row>
 	</ion-navbar>
 </ion-header>

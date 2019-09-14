@@ -4,7 +4,7 @@ import { Storage } from "@ionic/storage";
 
 import { AbstractPage } from '../abstract';
 import { ProfilePage, GamePage } from '../pages';
-import { User, Api } from '../../providers/providers';
+import { User, Api, HeaderProvider } from '../../providers/providers';
 
 @Component({
 	selector: 'page-game-loader',
@@ -24,9 +24,10 @@ export class GameLoaderPage extends AbstractPage {
 		public toastCtrl: ToastController,
 		public modalCtrl: ModalController,
 		public params: NavParams,
+        public header: HeaderProvider,
 		public user: User, 
 		public api: Api) {
-		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params);
+		super(viewCtrl, navCtrl, alertCtrl, toastCtrl, modalCtrl, params, header);
 		this.friendChosen = this.params.get('friend');
 
 		this.loadQuestions();

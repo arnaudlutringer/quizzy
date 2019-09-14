@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController, AlertController, NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
 import { ProfilePage, QuestionsPage, SettingsPage, SearchPage } from './pages';
+import { HeaderProvider } from '../providers/providers';
 
 @Component({})
 export class AbstractPage {
@@ -9,7 +10,8 @@ export class AbstractPage {
         public alertCtrl: AlertController,
         public toastCtrl: ToastController,
         public modalCtrl: ModalController,
-        public params: NavParams) {}
+        public params: NavParams,
+        public header: HeaderProvider) {}
 
     goTo(page, direction, params){
         this.navCtrl.setRoot(page, params, {animate: true, direction: direction});
@@ -58,6 +60,17 @@ export class AbstractPage {
         alert.present();
     }
 
+    toastError(message){
+        let alert = this.toastCtrl.create({
+            message: message,
+            duration: 3000000,
+            position: 'bottom',
+            dismissOnPageChange: true,
+            cssClass:'toast-error'
+        });
+        alert.present();
+    }
+
     confirm(title, message, fnct){
         return this.alertCtrl.create({
           title: title,
@@ -73,5 +86,12 @@ export class AbstractPage {
           }
           ]
       });
+    }
+
+    getNotifications(idMenu){
+      if(idMenu == 1){
+          return this.header.getNotifications().profile;
+      }
+      return new Array();
     }
 }

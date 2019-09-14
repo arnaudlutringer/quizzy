@@ -5,6 +5,7 @@ import { Api } from './api/api';
 import { Friends } from './friends/friends';
 import { Translate } from './translate/translate';
 import { StringUtils } from './utils/stringUtils';
+import { HeaderProvider } from './header/header';
 
 export {
     CategoryProvider,
@@ -13,5 +14,6 @@ export {
     Api,
     Friends, 
     Translate,
-    StringUtils
+    StringUtils,
+    HeaderProvider
 };
