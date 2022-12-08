@@ -34,7 +34,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "7.0.0",
-    "cordova-browser": "5.0.4",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^3.0.0",
     "cordova-plugin-globalization": "^1.11.0",
