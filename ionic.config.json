@@ -1,7 +1,0 @@
-{
-  "name": "quizzy",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
