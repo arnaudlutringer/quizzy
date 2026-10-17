@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { createQuizAction } from "../actions";
+import { api } from "@/lib/api";
 import { SUGGESTIONS } from "@/lib/suggestions";
 import { LIMITS, type QuestionDraft } from "@/lib/types";
 
@@ -28,9 +28,12 @@ export default function QuizBuilder() {
   const submit = () => {
     setError(null);
     startTransition(async () => {
-      const res = await createQuizAction(ownerName, questions);
-      if (!res.ok) return setError(res.error);
-      router.push(`/q/${res.data.slug}/admin?key=${res.data.adminKey}&nouveau=1`);
+      try {
+        const { slug, adminKey } = await api.createQuiz(ownerName, questions);
+        router.push(`/q/admin/?id=${slug}&key=${adminKey}&nouveau=1`);
+      } catch (e) {
+        setError((e as Error).message);
+      }
     });
   };
 

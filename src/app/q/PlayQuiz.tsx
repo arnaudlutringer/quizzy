@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState, useTransition } from "react";
-import { submitAttemptAction } from "@/app/actions";
 import Leaderboard from "@/components/Leaderboard";
+import { api } from "@/lib/api";
 import { LIMITS, type AttemptResult, type PublicQuiz } from "@/lib/types";
 
 function verdict(score: number, total: number, owner: string) {
@@ -28,9 +28,11 @@ export default function PlayQuiz({ quiz }: { quiz: PublicQuiz }) {
   const send = (finalAnswers: number[]) => {
     setError(null);
     startTransition(async () => {
-      const res = await submitAttemptAction(quiz.slug, playerName, finalAnswers);
-      if (res.ok) setResult(res.data);
-      else setError(res.error);
+      try {
+        setResult(await api.submitAttempt(quiz.slug, playerName, finalAnswers));
+      } catch (e) {
+        setError((e as Error).message);
+      }
     });
   };
 
@@ -42,7 +44,6 @@ export default function PlayQuiz({ quiz }: { quiz: PublicQuiz }) {
   };
 
   if (result) {
-    const mine = result.leaderboard.find((e) => e.playerName === playerName.trim() && e.score === result.score);
     return (
       <div className="space-y-6">
         <section className="card space-y-2 text-center">
@@ -53,7 +54,7 @@ export default function PlayQuiz({ quiz }: { quiz: PublicQuiz }) {
         </section>
         <section className="card space-y-3">
           <h2 className="text-lg font-bold">Classement</h2>
-          <Leaderboard entries={result.leaderboard} highlight={mine?.createdAt} />
+          <Leaderboard entries={result.leaderboard} highlight={result.createdAt} />
         </section>
         <section className="card space-y-4">
           <h2 className="text-lg font-bold">Les bonnes réponses</h2>
@@ -72,7 +73,7 @@ export default function PlayQuiz({ quiz }: { quiz: PublicQuiz }) {
             );
           })}
         </section>
-        <Link href="/creer" className="btn w-full">
+        <Link href="/creer/" className="btn w-full">
           À mon tour de créer mon quiz
         </Link>
       </div>

@@ -44,6 +44,13 @@ export type Correction = {
 export type AttemptResult = {
   score: number;
   total: number;
+  createdAt: string;
   correction: Correction[];
   leaderboard: LeaderboardEntry[];
+};
+
+export type AdminView = {
+  ownerName: string;
+  questions: { text: string; choices: string[]; correctIndex: number }[];
+  attempts: (LeaderboardEntry & { answers: number[] })[];
 };
