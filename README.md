@@ -2,24 +2,52 @@
 
 Tu crées un quiz sur toi, tu envoies le lien à tes amis, ils devinent tes réponses et chacun voit son score et le classement.
 
-Web app Next.js (App Router) + Supabase (Postgres). Pas de compte : le créateur reçoit un lien secret pour suivre les réponses.
+- **Front** : Next.js exporté en fichiers statiques (`out/`).
+- **Backend** : une petite API PHP 8 (`public/api/`, copiée dans `out/api/` au build) avec PDO, en **SQLite** par défaut ou **MySQL/MariaDB**.
+
+Pas de compte : le créateur reçoit un lien secret pour suivre les réponses. Les tables sont créées automatiquement au premier appel.
+
+## Installer sur ton serveur PHP local
+
+Prérequis : PHP 8.1+ avec `pdo_sqlite` (ou `pdo_mysql`), et Node 20+ pour construire le front.
+
+```bash
+npm install
+npm run build          # génère out/ (front + API)
+php -S localhost:8000 -t out
+```
+
+Puis ouvre http://localhost:8000.
+
+Avec Apache, Nginx, MAMP, Valet ou Herd, fais pointer la racine du site sur le dossier `out/` (par exemple `quizzy.test` → `…/quizzy/out`). L'app doit être servie à la racine d'un domaine.
+
+### Base de données
+
+Par défaut, les données vont dans `data/quizzy.sqlite` (en dehors du dossier servi). Pour MySQL, crée une base vide puis copie `public/api/config.sample.php` en `public/api/config.php` et remplis le DSN, l'utilisateur et le mot de passe. Relance `npm run build` pour que `out/api/config.php` soit à jour (ou modifie directement `out/api/config.php`).
+
+## Développer
+
+```bash
+php -S localhost:8000 -t public                              # l'API
+NEXT_PUBLIC_API_URL=http://localhost:8000/api npm run dev    # le front, sur http://localhost:3000
+```
+
+## API
+
+| Endpoint | Méthode | Rôle |
+| --- | --- | --- |
+| `api/create.php` | POST | Crée un quiz, renvoie `slug` et `adminKey` |
+| `api/quiz.php?id=` | GET | Le quiz pour un joueur, sans les bonnes réponses |
+| `api/attempt.php?id=` | POST | Enregistre les réponses d'un ami, renvoie score, correction et classement |
+| `api/leaderboard.php?id=` | GET | Classement public |
+| `api/admin.php?id=&key=` | GET | Vue du créateur avec les réponses de chaque ami |
 
 ## Pages
 
 - `/` : accueil
-- `/creer` : création du quiz (questions suggérées, toutes modifiables, 3 à 20 questions, 2 à 4 réponses)
-- `/q/<slug>` : le quiz à partager ; le score est calculé côté serveur, les bonnes réponses ne sont jamais envoyées au navigateur avant la fin
-- `/q/<slug>/classement` : classement public
-- `/q/<slug>/admin?key=<clé>` : vue du créateur (liens de partage, classement, détail des réponses de chaque ami)
-
-## Lancer en local
-
-1. Crée un projet sur [supabase.com](https://supabase.com) et exécute `supabase/schema.sql` dans l'éditeur SQL.
-2. Copie `.env.example` en `.env.local` et remplis `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` (Settings > API).
-3. `npm install` puis `npm run dev`, et ouvre http://localhost:3000.
-
-## Déployer
-
-Sur Vercel : importe le repo et ajoute les deux variables d'environnement ci-dessus.
+- `/creer/` : création du quiz
+- `/q/?id=<slug>` : le quiz à partager
+- `/q/classement/?id=<slug>` : classement
+- `/q/admin/?id=<slug>&key=<clé>` : vue du créateur
 
 L'ancienne app Ionic/Cordova (2019) reste disponible dans l'historique git.

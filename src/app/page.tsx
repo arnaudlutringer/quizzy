@@ -8,7 +8,7 @@ export default function Home() {
         <p className="text-lg opacity-80">
           Réponds à quelques questions sur toi, envoie le lien à tes amis et découvre qui te connaît le mieux.
         </p>
-        <Link href="/creer" className="btn text-lg">
+        <Link href="/creer/" className="btn text-lg">
           Créer mon quiz
         </Link>
       </section>
