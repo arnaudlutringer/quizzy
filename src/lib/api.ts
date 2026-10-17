@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import type { AdminView, AttemptResult, LeaderboardEntry, PublicQuiz, QuestionDraft } from "./types";
 
-// Même origine par défaut ; en développement (`npm run dev`), pointer vers le serveur PHP.
+// Même origine par défaut ; en développement (`npm run dev`) et dans l'app mobile,
+// pointer vers le serveur PHP.
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? "/api";
 
 export class ApiError extends Error {
@@ -44,20 +45,21 @@ export const api = {
 
 export type Loaded<T> = { status: "loading" } | { status: "error"; error: ApiError } | { status: "ok"; data: T };
 
-// Charge une ressource au montage (et quand `deps` change).
-export function useLoad<T>(load: () => Promise<T>, deps: unknown[]): Loaded<T> {
-  const [state, setState] = useState<Loaded<T>>({ status: "loading" });
+// Charge une ressource au montage (et quand `deps` change). Le résultat est
+// rattaché à ses `deps` : tant qu'il ne correspond pas aux `deps` courantes, on est en chargement.
+export function useLoad<T>(load: () => Promise<T>, deps: string[]): Loaded<T> {
+  const key = JSON.stringify(deps);
+  const [state, setState] = useState<{ key: string; value: Loaded<T> } | null>(null);
   useEffect(() => {
     let alive = true;
-    setState({ status: "loading" });
     load().then(
-      (data) => alive && setState({ status: "ok", data }),
-      (error) => alive && setState({ status: "error", error }),
+      (data) => alive && setState({ key, value: { status: "ok", data } }),
+      (error) => alive && setState({ key, value: { status: "error", error } }),
     );
     return () => {
       alive = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
-  return state;
+  }, [key]);
+  return state?.key === key ? state.value : { status: "loading" };
 }

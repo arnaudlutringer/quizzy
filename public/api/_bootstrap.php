@@ -25,7 +25,8 @@ function config(): array
         'user' => null,
         'password' => null,
         // Origines autorisées à appeler l'API depuis un autre port (ex. `npm run dev`).
-        'cors_origins' => ['http://localhost:3000'],
+        // `https://localhost` et `capacitor://localhost` : l'app mobile (Android, iOS).
+        'cors_origins' => ['http://localhost:3000', 'https://localhost', 'capacitor://localhost'],
     ];
     $local = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [];
     return $config = array_merge($defaults, is_array($local) ? $local : []);

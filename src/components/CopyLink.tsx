@@ -1,16 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+import { Capacitor } from "@capacitor/core";
+import { Share } from "@capacitor/share";
+
+// Dans l'app mobile, l'origine est locale (`https://localhost`) : les liens partagés
+// pointent alors vers le site public.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+
+const subscribe = () => () => {};
 
 // `path` est relatif au site ; l'URL complète est calculée côté navigateur.
 export default function CopyLink({ path, label }: { path: string; label: string }) {
-  const [url, setUrl] = useState(path);
+  const origin = useSyncExternalStore(
+    subscribe,
+    () => SITE_URL ?? window.location.origin,
+    () => SITE_URL ?? "",
+  );
+  const url = origin + path;
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => setUrl(window.location.origin + path), [path]);
 
   const copy = async () => {
     try {
+      if (Capacitor.isNativePlatform()) {
+        await Share.share({ title: "Est-ce que tu me connais ?", url });
+        return;
+      }
       if (navigator.share && window.matchMedia("(pointer: coarse)").matches) {
         await navigator.share({ title: "Est-ce que tu me connais ?", url });
         return;

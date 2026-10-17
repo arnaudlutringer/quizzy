@@ -11,6 +11,7 @@ return [
     // SQLite ailleurs :
     // 'dsn' => 'sqlite:/chemin/vers/quizzy.sqlite',
 
-    // Origines autorisées à appeler l'API depuis un autre port (développement).
-    // 'cors_origins' => ['http://localhost:3000'],
+    // Origines autorisées à appeler l'API depuis un autre port (développement)
+    // ou depuis l'app mobile (Android : https://localhost, iOS : capacitor://localhost).
+    // 'cors_origins' => ['http://localhost:3000', 'https://localhost', 'capacitor://localhost'],
 ];

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quizzy</string>
+    <string name="title_activity_main">Quizzy</string>
+    <string name="package_name">com.arnaudlutringer.quizzy</string>
+    <string name="custom_url_scheme">com.arnaudlutringer.quizzy</string>
+</resources>
