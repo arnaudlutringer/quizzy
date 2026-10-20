@@ -9,7 +9,7 @@ Pas de compte : le créateur reçoit un lien secret pour suivre les réponses. L
 
 ## Installer sur ton serveur PHP local
 
-Prérequis : PHP 8.1+ avec `pdo_sqlite` (ou `pdo_mysql`), et Node 20+ pour construire le front.
+Prérequis : PHP 8.1+ avec `pdo_sqlite` (ou `pdo_mysql`), et Node 22+ pour construire le front.
 
 ```bash
 npm install
@@ -31,6 +31,20 @@ Par défaut, les données vont dans `data/quizzy.sqlite` (en dehors du dossier s
 php -S localhost:8000 -t public                              # l'API
 NEXT_PUBLIC_API_URL=http://localhost:8000/api npm run dev    # le front, sur http://localhost:3000
 ```
+
+## App mobile (Capacitor)
+
+Les projets natifs sont dans `android/` et `ios/`. L'app embarque le front et appelle l'API PHP de ton site public, qui doit donc être en ligne en HTTPS.
+
+```bash
+NEXT_PUBLIC_API_URL=https://mon-site.fr/api npm run build:mobile   # build + copie dans android/ et ios/
+npm run android   # ouvre Android Studio
+npm run ios       # ouvre Xcode (sur Mac)
+```
+
+Les liens partagés depuis l'app pointent vers `https://mon-site.fr` (l'URL de l'API sans `/api`) ; pour en choisir un autre, ajoute `NEXT_PUBLIC_SITE_URL`. L'API accepte par défaut les origines de l'app (`https://localhost` sur Android, `capacitor://localhost` sur iOS) ; si ton `config.php` redéfinit `cors_origins`, garde-les dans la liste.
+
+Prérequis : Node 22+, Android Studio (JDK 21) pour Android, Xcode 26 pour iOS.
 
 ## API
 
